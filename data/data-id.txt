@@ -1,0 +1,34 @@
+réseaux sociaux
+com.instagram.android
+com.facebook.katana
+com.twitter.android
+
+entreprises de transport
+ch.tpg.android
+ch.sbb.mobile.android.b2c
+ch.tl.tl
+
+streaming
+com.netflix.mediaclient
+com.disney.disneyplus
+com.amazon.avod.thirdpartyclient
+
+jeu mobile
+com.nianticlabs.pokemongo
+net.wargaming.wot.blitz
+com.king.candycrushsaga
+
+vente
+com.galaxusapp
+com.amazon.mShop.android.shopping
+com.ubercab.eats
+
+bancaire
+com.ubs.swidKXJ.android
+ch.raiffeisen.android
+com.swissquote.android
+
+autre
+io.yuka.android
+ch.iAgentur.i20MinFr
+ch.admin.meteoswiss
