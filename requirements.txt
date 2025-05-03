@@ -1,3 +1,4 @@
 requests
 httpx
 matplotlib
+dvc

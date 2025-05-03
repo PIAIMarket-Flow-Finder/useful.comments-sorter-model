@@ -32,27 +32,31 @@ async def annotate_comment(comment):
             try:
                 resp = await client.post(
                     "https://ollama.kube.isc.heia-fr.ch/api/generate",
-                    json={"model": "llama3:70b", "prompt": prompt, "stream": False},
+                    json={"model": "qwen2.5:32b-instruct", "prompt": prompt, "stream": False},
                     timeout=60.0,
                 )
+                print(f"📥 Requête envoyée, code retour : {resp.status_code}")
                 response = resp.json()["response"].strip()
                 comment["relevance_score"] = response  # Ajoute la réponse directement
             except Exception as e:
+                print(f"❌ Exception Python : {e}")
+                if resp is not None:
+                    print(f"📨 Statut HTTP : {resp.status_code}")
+                    print(f"📦 Contenu : {resp.text}")
                 comment["relevance_score"] = "error"
-                print(f"❌ Erreur sur commentaire : {e}")
     return comment
 
 
 
 async def main():
-    with open("data/dataset.json", encoding="utf-8") as f:
+    with open("data/all_comments.json", encoding="utf-8") as f:
         comments = json.load(f)
-        comments = comments[:100]
+        #comments = comments[:1000]
 
     tasks = [annotate_comment(c) for c in comments]  # limite optionnelle
     results = await asyncio.gather(*tasks)
 
-    with open("data/dataset_relevance.json", "w", encoding="utf-8") as f:
+    with open("data/comments_with_relevance.json", "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
 
     print(f"✅ {len(results)} commentaires annotés enregistrés dans annotated_comments.json")
